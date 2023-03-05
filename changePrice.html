@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>
+            Update Price
+        </title>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script type="text/javascript"></script>
+        <link href="stylefile.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    </head>
+
+    <body">
+        <div style="position: relative; top: 130;">
+            <h1 id='title'>Update Car Price</h1>
+            <form style="margin:auto; width: 500px;" onsubmit="return validate()" action="changePrice.php" method = "POST">
+                <div class="form-group">
+                    <input id="plate_id5" type="text" class="form-control" name="plate_id5" autocomplete="on" placeholder="Plate Id...">
+                    <br>
+                    <input id="new_price" type="text" class="form-control" name="new_price" autocomplete="on" placeholder="New Price...">
+                    <br>
+                </div>
+                <button id="register-button" type="submit" name="submit5" class="btn btn-primary">Update</button>.
+            </form>
+        </div>
+    </body>
+
+    <script>
+        function validate()
+        {            
+            // Validate empty inputs
+            var plate_id=document.getElementById("plate_id5").value;
+            var price=document.getElementById("new_price").value;
+            x = ""
+            if (plate_id=="")
+            {
+                x = x + 'You must enter the plate ID!' + ' ';
+            }
+            if (price=="")
+            {
+                x = x + 'You must enter the price!' + ' ';
+            }
+            if (x != "")
+            {
+                alert(x);
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: "changePrice.php",
+                data: { validate:"validate",plate_id:plate_id,price: price },
+                success: function(response){
+                    if (response == "success")
+                    {
+                        alert("Price Updated to " + price  + " EGP successfully!");
+                        window.location="http://localhost/phpmyadmin/Final/adminHome.html";
+                    }
+                    else
+                    {
+                        alert("Plate ID does not exist!\nMake sure you enter the correct plate ID");
+                    }
+                }
+            });
+            return false;     
+        }
+    </script>
+</html>
+
+

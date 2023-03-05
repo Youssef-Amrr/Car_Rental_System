@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+      <head>
+        <title>
+            Daily Payments
+        </title>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script type="text/javascript"></script>
+        <link href="stylefile.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    </head>
+    <body>
+        <br><br><br><br><br>
+        <div>
+            <h1>Get Daily Payments within specific period</h1>
+            <form id="login-form" method="post" onsubmit="return function2()" action="daily_payments.php">
+                <div class="form-group">
+                    <input id="start2" type="text" class="form-control" name="start2" placeholder="Start Date...">
+                    <br>
+                    <input id="end2" type="text" class="form-control" name="end2"  placeholder="End Date...">
+                    <br>
+                </div>
+                <button id="button2" type="submit" name="submit2" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </body>
+
+<script>
+  function function2()
+        {
+            var start = document.getElementById("start2").value;
+            var end = document.getElementById("end2").value;
+
+            var regExp=/^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/;
+            if (start != ""){
+            if (!regExp.test(start)) {
+                    alert("INVALID START DATE! (YYYY-MM-DD)");
+                    return false;
+            }}
+            if (end != ""){
+            if (!regExp.test(end)) {
+                    alert("INVALID END DATE! (YYYY-MM-DD)");
+                    return false;
+            }}
+            if (start != "" && end != ""){
+            var startsplit =start.split('-');
+            var date1 =new Date(startsplit[0], startsplit[1] - 1, startsplit[2]); 
+            var endsplit =end.split('-');
+            var date2 =new Date(endsplit[0], endsplit[1] - 1, endsplit[2]); 
+            if(date1 > date2)
+            {
+                alert("INVALID DATES: END DATE IS BEFORE START DATE");
+                return false;
+            }}
+            return true;
+        }
+        </script>
+</html>
+
+
