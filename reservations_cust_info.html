@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+      <head>
+        <title>
+           Customer Reservations
+        </title>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script type="text/javascript"></script>
+        <link href="stylefile.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    </head>
+    <body>
+        <br><br> <br><br><br><br>     
+        <div style="position: relative; top: 130;">
+        <h1>Reservations (Search by Customer)</h1>
+        <form id="login-form" method="post" onsubmit="return customerInfo()" action="reservations_cust_info.php">
+            <div class="form-group">
+            <input id="cust_id5" type="text" class="form-control" name="cust_id5" placeholder="Customer Id...">
+            <br>
+            <input id="fname5" type="text" class="form-control" name="fname5" placeholder="First Name...">
+            <br>
+            <input id="lname5" type="text" class="form-control" name="lname5" placeholder="Last Name...">
+            <br>
+            <input id="email5" type="text" class="form-control" name="email5" placeholder="Email...">
+            <br>
+            </div>
+            <button id="submit5" type="submit" name="submit5" class="btn btn-primary">Search</button>
+        </form>
+        </div>
+    </body>
+
+<script>
+          function customerInfo() {
+            // Validate empty inputs
+            var email = document.getElementById("email5").value;
+            console.log(email);
+            regex =  /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+            if (email != "" )
+            {
+                if (!email.match(regex))
+                {
+                    alert("The Email you entered is not a correct one. It must in the form of 'ex12ple@ex45ple.com'");
+                    return false;
+                }
+            }
+               
+            return true;
+        }
+        </script>
+</html>
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+      <head>
+        <title>
+            Car Status
+        </title>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script type="text/javascript"></script>
+        <link href="stylefile.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    </head>
+    <body>
+
+        <div style="position: relative;">
+            <br><br><br><br><br>
+            <h1>Car Status At Specific Day</h1>
+            <form id="login-form" name="status" method="post" onsubmit="return carstatus()" action="status.php">
+                <div class="form-group">
+                    <input class="form-control" id = "date" type="string" name="date" placeholder="Day's date...">
+                </div>
+                <button id="submit3" type="submit" name="submit3" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </body>
+
+<script>
+
+function carstatus() {
+                var day = document.getElementById("date").value;
+                if (day=="")
+                {
+                    alert('You must fill in the date field');
+                    return false;
+                }
+                var regex=/^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/;
+                if (!day.match(regex))
+                    {
+                        alert('Please enter date in this format (YYYY-MM-DD)');
+                        return false;
+                    }
+                return true;
+            }
+        </script>
+</html>
+
+

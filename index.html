@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>
+            Login Page
+        </title>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script type="text/javascript"></script>
+        <link href="stylefile.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    </head>
+    <body style="margin:0 auto;">
+        <img class = "background" src="login.png">
+        <h1 style="position: relative; top: 50px;">Car Rental Website</h1>
+        <div style="position: relative; top: 130;">
+            <form id="login-form" method="post" onsubmit="return validate()" action="get_user.php">
+                <div class="form-group">
+                    <input id="email" type="text" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Email Address...">
+                    <br>
+                    <input id="password" type="password" class="form-control" name="password" placeholder="Password...">
+                    <br>
+                    <div style="position: relative; left: 200px;">
+                   <input type = "radio" value = "admin" name = "job" id = "admin"> 
+                   <label for="admin">Admin</label>
+                    <input type = "radio" value = "user" name = "job" id = "user">  
+                    <label for="admin">User</label>
+                    </div>
+                </div>
+                <button style="position: relative; left: 200px; width: 100px;"type="submit" name="submit" class="btn btn-primary">Login</button>
+            </form>
+            <div style="font-weight:bold;position: relative; left: -60px; bottom: -130px;">
+            <p style="color:#483D8B; font-size: 20px;" id="register-link">Not Registered? <a style="color:#654949;"href="register.html">Register</a></p>
+                </div>
+        </div>
+    </body>
+
+    <script>
+        function validate()
+        {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            if (email=="")
+            {
+                alert('You must enter your email!');
+            }
+            else if (password=="")
+            {
+                alert('You must enter your password!');
+            }
+           else if(!document.getElementById('admin').checked && !document.getElementById('user').checked) {
+                alert('Please specify your role!');
+            }
+         else if(document.getElementById('admin').checked)
+            {
+                if (email != 'admin@gmail.com')
+                {
+                    alert('Incorrect email!')
+                        return false; 
+                }
+                else if (password != 'admin')
+                {
+                    alert('Incorrect Password!')
+                        return false; 
+                } 
+                else
+                    window.location="http://localhost/phpmyadmin/Final/adminHome.html";
+                    
+            }
+            else 
+            {
+                $.ajax({
+                type: "POST",
+                url: "get_user.php",
+                data: { validate:"validate",email: email, password: password },
+                success: function(response){
+                    if (response == "success")
+                    {
+
+                        window.location="http://localhost/phpmyadmin/Final/customer_start.php";
+                    }
+                    else
+                    {
+                        alert("Incorrect Email or Password!");
+                    }
+                }
+            });
+            }
+            return false;
+        } 
+    </script>
+</html>
+
+

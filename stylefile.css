@@ -1,0 +1,138 @@
+img.background {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    background-size: auto;
+    height: 100%;
+
+    }
+body
+{
+    background-image: url("https://th.bing.com/th/id/R.4c084d86e231ccd793fbdd34e388d4e6?rik=mXf7EIbUFSli9w&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fF0uViyV.png&ehk=VN2URYCNEr4lgbJclb8QL9oPgfZMXkMKiOJ27YBQ1yM%3d&risl=&pid=ImgRaw&r=0");
+    background-size: cover;
+}
+ h1 {
+    text-align: center; 
+    font-weight: bold; 
+    position: relative; 
+    color:#654949;
+}
+button {
+    background-color: #483D8B;
+    position: relative; 
+    top: 30px; 
+    left: 210px; 
+    width: 100px;
+}
+#login-form {
+    margin:auto; 
+    width: 500px;
+}
+
+#register-link {
+    position: relative;
+    top: 80px;
+    left:690px;
+}
+
+#login-button {
+    background-color: #7d5b2e3c;
+    position: relative;
+    width: 30px;
+    height: 10px;
+}
+
+#title {
+    text-align: center;
+    font-weight: bold; 
+    position: relative; 
+    bottom: 70px; 
+    color:#483D8B
+}
+
+button {
+    background-color: #483D8B;
+    position: relative; 
+    top: 30px; 
+    left: 210px; 
+    width: 100px;
+}
+
+#log-link {
+    position: relative; 
+    top: 80px; 
+    left:730px;
+}
+
+.form {
+    margin: 70px auto;
+    width: 400px;
+    padding: 40px 30px;
+    background: #a4c8ae ;
+    border: 2px solid #cccc;
+}
+h1.login-title {
+    color: #d6fff7;
+    margin: 0px auto 25px;
+    font-size: 27px;
+    font-weight: 300;
+    text-align: center;
+}
+.login-input {
+    font-size: 17px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 25px;
+    height: 25px;
+    width: calc(100% - 25px);
+    color: #000000;
+}
+.login-input:focus {
+    border-color:#6e8095;
+    outline: none;
+}
+.login-button{
+    color: #d6fff7;
+    background: #5a9695;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+#pick_btn {
+    color: #d6fff7;
+    background: #5a9695;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.link {
+    color: #666;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.link a {
+    color: #666;
+}
+h3 {
+    color: #000000;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+h2{
+    color: #000000;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0px;
+}

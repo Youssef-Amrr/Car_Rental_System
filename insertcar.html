@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <title>
+            Insert Car
+        </title>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script type="text/javascript"></script>
+        <link href="stylefile.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    </head>
+
+    <body">
+        <div style="position: relative; top: 130;">
+            <h1 id='title'>Car Registration Form</h1>
+            <form style="margin:auto; width: 500px;" onsubmit="return validate()" method = "POST">
+                <div class="form-group">
+                    <input id="plate_id" type="text" class="form-control" name="plate_id" autocomplete="on" placeholder="Plate ID...">
+                    <br>
+                    <input id="model" type="text" class="form-control" name="model" autocomplete="on" placeholder="Model...">
+                    <br>
+                    <input id="year" type="text" class="form-control" name="year" autocomplete="on" placeholder="Year...">
+                    <br>
+                    <input id="colour" type="text" class="form-control" name="colour" autocomplete="on" placeholder="Colour...">
+                    <br>
+                    <input id="price" type="text" autocomplete="on" class="form-control" name="price" placeholder="Price...">
+                    <br>
+                    <input id="office_id" type="text" autocomplete="on" class="form-control" name="office_id" placeholder="Office ID...">
+                </div>
+                <button id="register-button" type="submit" name="submit" class="btn btn-primary">Register Car</button>
+            </form>
+            <p id='log-link'>Back to <a href="adminHome.html">Admin Home</a></p>
+        </div>
+    </body>
+
+    <script>
+        function validate()
+        {            
+            // Validate empty inputs
+            var plate_id=document.getElementById("plate_id").value;
+            var model=document.getElementById("model").value;
+            var year=document.getElementById("year").value;
+            var colour=document.getElementById("colour").value;
+            var price=document.getElementById("price").value;
+            var office_id=document.getElementById("office_id").value;
+            var regExp=/^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/;
+            var stringRegExp= /^[A-Za-z]+$/;
+            var numericRegExp=/^\d*\.?\d*$/;
+            var intRegExp=/^\d+$/;
+            var yearRegExp=/^(19|20)\d{2}$/;
+            x = "";
+            if (plate_id=="")
+            {
+                x = x + 'You must enter the plate ID!' + ' ';
+            }
+            if (model=="")
+            {
+                x = x + '\n' +'You must enter the model!' + ' ';
+            }
+            if (year=="")
+            {
+                x = x + '\n' + 'You must enter the production year!';
+            }
+            if (colour=="")
+            {
+                x = x + '\n' + 'You must enter the colour!';
+            }
+            if (price=="")
+            {
+                x = x + '\n' + 'You must enter the price!';
+            }
+            if (office_id=="")
+            {
+                x = x + '\n' + 'You must enter the office ID!';
+            }
+            if (x != "")
+            {
+                alert(x);
+                return false;
+            }
+            if(office_id!="" && !intRegExp.test(office_id)){
+                alert("INVALID OFFICE ENTRY: OFFICE FIELD MUST BE STRING");
+                return false;
+            }
+            if(model!="" && !stringRegExp.test(model)){
+                alert("INVALID MODEL ENTRY: MODEL FIELD MUST BE STRING");
+                return false;
+            }
+            if(year!="" && !yearRegExp.test(year)){
+                alert("INVALID YEAR ENTRY: YEAR FIELD MUST BE NUMERIC");
+                return false;
+            }
+            if(colour!="" && !stringRegExp.test(colour)){
+                alert("INVALID COLOR ENTRY: COLOR FIELD MUST BE STRING");
+                return false;
+            }
+            if(price!="" && !numericRegExp.test(price)){
+                alert("INVALID PRICE ENTRY: PRICE FIELD MUST BE NUMERIC");
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: "store_car.php",
+                data: { validate:"validate",plate_id:plate_id, model:model, year: year, colour: colour, price: price, office_id:office_id },
+                success: function(response){
+                    if (response == "success")
+                    {
+                        alert("Car registered successfully!");
+                        window.location="http://localhost/phpmyadmin/Final/adminHome.html";
+                    }
+                    else if (response == "fail1")
+                    {
+                        alert("Plate ID already exists!\nMake sure you enter the correct plate ID");
+                    }
+                    else if (response =="fail2") {
+                        alert("Office ID doesn't exist!\nMake sure you enter a valid office ID")
+                    }
+                }
+            });
+            return false;     
+        }
+    </script>
+</html>
